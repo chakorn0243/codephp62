@@ -1,15 +1,22 @@
 <?php
-$a = 5;
+$a = 80;
 switch ($a) {
-    case 5:
-        echo "a equal 5";
-       break;
-    case ($a > 3 && $a < 6):
-        echo "a gt 5";
+    
+    case ($a < 50):
+        echo "Get F";
         break;
-    case ($a < 5):
-        echo "a less 5";
-        break;
+        case ($a < 60):
+            echo "Get D";
+            break;
+            case ($a < 70):
+                echo "Get C";
+                break;
+                case ($a < 80):
+                    echo "Get B";
+                    break;
+                    case ($a < 100):
+                        echo "Get A";
+                        break;
     default:
         echo "default";
         break;
