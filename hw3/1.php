@@ -4,10 +4,20 @@ $dbuser ='root';
 $dbpass = '';
 $dbname = 'codephp';
 
-$mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
-if ($mysqli->connect_errno) {
-    printf("Connect failed: %s\n", $mysqli->connect_error);
+$myconn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+if ($myconn->connect_errno) {
+    printf("Connect failed: %s\n", $myconn->connect_error);
     exit();
 } 
 
-echo 'after connect database';
+$strSQL = "SELECT `userID`, `userName`,`userStatus` FROM `user`";
+$result = $myconn -> query($strSQL);
+while ($row = $result ->fetch_array()){
+    echo $row["userName"] . "<br>";
+    
+}
+
+
+
+?>
+
