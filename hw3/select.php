@@ -15,12 +15,6 @@ $result = $myconn->query($strSQL);
 
 
 
-
-
-
-//  while ($row = $result->fetch_array()) {
-//     echo $row["userName"] . "<br>";
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
