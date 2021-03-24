@@ -9,16 +9,27 @@ if ($myconn->connect_errno) {
     printf("Connect failed: %s\n", $myconn->connect_error);
     exit();
 }
-// $strSQL = "INSERT INTO `user`(`userName`, `userPassword`) ";
-// $strSQL .= "VALUES ('user03','password for user 03' )";
 
-// $result = $myconn->query($strSQL);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-// if($result){
-// echo" 1";
-// }else{
-//     echo "2" . $result;
-// }
+
+    $frmUsername = $frmPassword = "  ";
+    $frmUsername = $_POST["userName"];
+    $frmPassword = $_POST["password"];
+
+    if ($frmUsername && $frmPassword) {
+        $strSQL = "INSERT INTO user(userName,userPassword,userStatus)";
+        $strSQL .= "VALUES ('" . $frmUsername . "','" . $frmPassword . "',0 )";
+
+        $result = $myconn->query($strSQL);
+
+        if ($result) {
+            echo " เพิ่มข้อมูลสำเร็จ";
+        } else {
+            echo "ไม่สามารถเพิ่มข้อมูลได้";
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,26 +43,27 @@ if ($myconn->connect_errno) {
 </head>
 
 <body>
-    <table border="5">   
-        <tr>
-            <td>usrname</td>
-            <td><input type="text" name="userName" ID="userName"></td>
-        </tr>
+    <form action="insert.php" method="post">
+        <table border="1">
+            <tr>
+                <td>username</td>
+                <td><input type="text" name="userName" ID="userName"></td>
+            </tr>
 
-        <tr>
-            <td>paasword</td>
-            <td><input type="password" name="password" ID="password"></td>
-        </tr>
+            <tr>
+                <td>password</td>
+                <td><input type="password" name="password" ID="password"></td>
+            </tr>
 
-        <tr>
-            <td><input colspan="2"><input type="button" value="save"></td>
-        </tr>
-
-
+            <tr>
+                <td><input colspan="2"><input type="submit" value="save"></td>
+            </tr>
 
 
-    </table>
 
+
+        </table>
+    </form>
 
 </body>
 
