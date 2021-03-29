@@ -1,21 +1,12 @@
 <?php
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'codephp';
-
-$myconn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
-if ($myconn->connect_errno) {
-    printf("Connect failed: %s\n", $myconn->connect_error);
-    exit();
-}
+require_once 'connectdb.php';
 
 $strSQL = "SELECT `userID`, `userName`,`userStatus` FROM `user`";
 $result = $myconn->query($strSQL);
 
-
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +25,8 @@ $result = $myconn->query($strSQL);
             <td>ลำดับ</td>
             <td>ชื่อผู้ใช้</td>
             <td>สถานะ</td>
+            <td>เเก้ไข</td>
+            <td>ลบ</td>
         </tr>
     <?php
     while ($row = $result->fetch_array()) {
@@ -43,6 +36,10 @@ $result = $myconn->query($strSQL);
         <td><?php echo $row ["userID"] ?></td>
         <td><?php echo $row ["userName"]?> </td>
         <td><?php echo $row ["userStatus"] ?></td>
+        <td>edit</td>
+        
+
+        <td><a href="delete.php?id=<?php echo $row["userID"] ?>">delete</a></td>
          </tr>
         <?php
     

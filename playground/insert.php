@@ -1,14 +1,5 @@
 <?php
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'codephp';
-
-$myconn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
-if ($myconn->connect_errno) {
-    printf("Connect failed: %s\n", $myconn->connect_error);
-    exit();
-}
+require_once 'connectdb.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
