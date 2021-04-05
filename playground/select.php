@@ -14,6 +14,7 @@ $result = $myconn->query($strSQL);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
@@ -30,16 +31,18 @@ $result = $myconn->query($strSQL);
         </tr>
     <?php
     while ($row = $result->fetch_array()) {
-         echo $row["userName"] . "<br>";
+        //  echo $row["userName"] . "<br>";
          ?>
          <tr>
         <td><?php echo $row ["userID"] ?></td>
         <td><?php echo $row ["userName"]?> </td>
         <td><?php echo $row ["userStatus"] ?></td>
-        <td>edit</td>
-        
-
-        <td><a href="delete.php?id=<?php echo $row["userID"] ?>">delete</a></td>
+       
+        <td><a href="update.php?id=<?= $row["userID"]?>&userName=<?= $row["userName"]?> &userStatus=<?=$row["userStatus"]?>"><i class="fas fa-pencil-alt"></i></i></a></td>
+        <td><a href="delete.php?id=<?= $row["userID"] ?>"><i class="fas fa-trash-alt"></i></a></td>
+       
+       
+       
          </tr>
         <?php
     
