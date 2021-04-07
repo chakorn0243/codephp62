@@ -1,4 +1,5 @@
 <?php
+include 'template/header.html';
 require_once 'connectdb.php';
 
 $userID = "";
@@ -19,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userName = $userStatus = "";
     $userID  = $_GET["id"];
     $userName  = $_POST["userName"];
-    $userStatus= $_POST["userStatus"]; 
+    $userStatus = $_POST["userStatus"];
 
 
     if ($userName && $userStatus) {
-        $strSQL ="UPDATE user SET userName ='" .$userName."' , userStatus=" .$userStatus." WHERE userID = ".$userID;
-        if(($userName == "") && ($userStatus == "")){
+        $strSQL = "UPDATE user SET userName ='" . $userName . "' , userStatus=" . $userStatus . " WHERE userID = " . $userID;
+        if (($userName == "") && ($userStatus == "")) {
             echo "can't add information";
         }
 
@@ -33,37 +34,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "update User Complete";
         } else {
             echo "update User failled";
-         
         }
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 
 <body>
-    <form action="update.php?id=<?=$userID?>" method="post">
-        <table border="1">
-            <tr>
+
+<form action="update.php?id=<?= $userID ?>" method="post">
+    <div class="form-group">
+    <label for="exampleInputEmail1">username</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name=" userName" value="<?= $userName ?>">
+    </div>
+    <div class="form-group">
+    <label for="exampleInputPassword1">userStatus</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="userStatus" value="<?= $userStatus ?>">
+  </div>
+  <button type="submit" class="btn btn-primary">save</button>
+</form>
+
+ 
+            <!-- <tr>
                 <td>userName</td>
-                <td><input type="text" name="userName" value="<?=$userName?>"></td>
+                <td><input type="text" name="userName" value="<?= $userName ?>"></td>
             </tr>
             <tr>
                 <td>userStatus</td>
-                <td><input type="text" name="userStatus" value="<?=$userStatus?>"></td>
+                <td><input type="text" name="userStatus" value="<?= $userStatus ?>"></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="save"></td>
             </tr>
         </table>
-    </form>
+    </form> -->
+
+
+
+    <?php
+    include 'template/footer.html';
+    ?>
 </body>
 
 </html>

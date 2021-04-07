@@ -1,4 +1,5 @@
 <?php
+include 'template/header.html';
 require_once 'connectdb.php';
 
 $strSQL = "SELECT `userID`, `userName`,`userStatus` FROM `user`";
@@ -7,21 +8,13 @@ $result = $myconn->query($strSQL);
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <title>Document</title>
-</head>
 
 <body>
    
 
-    <table border="5" width="80%">
+    <table class="table table-dark">
+    <thead>
         <tr>
             <td>ลำดับ</td>
             <td>ชื่อผู้ใช้</td>
@@ -29,6 +22,8 @@ $result = $myconn->query($strSQL);
             <td>เเก้ไข</td>
             <td>ลบ</td>
         </tr>
+        </thead>
+        <tbody>
     <?php
     while ($row = $result->fetch_array()) {
         //  echo $row["userName"] . "<br>";
@@ -40,6 +35,8 @@ $result = $myconn->query($strSQL);
        
         <td><a href="update.php?id=<?= $row["userID"]?>&userName=<?= $row["userName"]?> &userStatus=<?=$row["userStatus"]?>"><i class="fas fa-pencil-alt"></i></i></a></td>
         <td><a href="delete.php?id=<?= $row["userID"] ?>"><i class="fas fa-trash-alt"></i></a></td>
+        
+
        
        
        
@@ -48,11 +45,13 @@ $result = $myconn->query($strSQL);
     
     }
 ?>
+
+    </tbody>
     </table>
-
-
-
-
+    <a href="insert.php">add user</a>
+    <?php
+    include 'template/footer.html';
+    ?>
 </body>
 
 </html>

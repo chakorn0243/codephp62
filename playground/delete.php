@@ -17,5 +17,3 @@ else {
     echo 'id is null'; 
 }
 }
-?>
-
